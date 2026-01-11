@@ -15,7 +15,7 @@
                            <div class="sb-nav-link-icon"><i class="fa-brands fa-shopify"></i></div> Product
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('vendor/add-product') }}">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ url('vendor/add-product') }}">Add</a></li>
                             <li><a class="dropdown-item" href="{{ url('vendor/view-product') }}">View</a></li>
 
                         </ul>

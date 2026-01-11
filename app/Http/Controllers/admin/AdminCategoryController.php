@@ -49,7 +49,14 @@ class AdminCategoryController extends Controller
                 "c_commission" => $request->c_commission,
         ]);
 
-        return view('admin.view-category')->with('msg','Updated Category Successfully');
+        return redirect('admin/view-category')->with('msg','Updated Category Successfully');
     }
 
+    public function deletecategory($c_id){
+        $category = Category::find($c_id);
+
+        $category->delete();
+
+        return redirect('admin/view-category')->with('msg','Deleted Category Successfully');
+    }
 }

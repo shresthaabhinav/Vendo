@@ -26,4 +26,6 @@ class Vendor extends Model
         "updated_at"
     ];
 
+    protected $primaryKey = 'v_id';
+
 }

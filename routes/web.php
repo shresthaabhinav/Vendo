@@ -1,11 +1,19 @@
 <?php
 
+use App\Http\Controllers\vendor\ProductController;
 use App\Http\Middleware\VendorMiddleware;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\admin\AdminCategoryController;
-use App\Http\Controllers\{HomeController, CategoryController, SubcategoryController, 
-    ProductdetailController, CartController, CheckoutController, UserController, VendorController,
+use App\Http\Controllers\{
+    HomeController,
+    CategoryController,
+    SubcategoryController,
+    ProductdetailController,
+    CartController,
+    CheckoutController,
+    UserController,
+    VendorController,
     AdminController
 };
 
@@ -21,12 +29,12 @@ Route::group(['prefix' => '/category'], function () {
     Route::get('/electronics/tv/{slug}', [ProductdetailController::class, 'productdetail']);
 });
 
-    Route::get('/cart-list/{slug}', [CartController::class, 'list']);
-    Route::get('/checkout/{slug}', [CheckoutController::class, 'checkout']);
-    Route::get('register', [UserController::class, 'register']);
-    Route::get('register1', [UserController::class, 'register1']);
-    Route::get('login', [UserController::class, 'login']);
-    Route::get('login1', [UserController::class, 'login1']);
+Route::get('/cart-list/{slug}', [CartController::class, 'list']);
+Route::get('/checkout/{slug}', [CheckoutController::class, 'checkout']);
+Route::get('register', [UserController::class, 'register']);
+Route::get('register1', [UserController::class, 'register1']);
+Route::get('login', [UserController::class, 'login']);
+Route::get('login1', [UserController::class, 'login1']);
 
 // User Dashboard Routes Starts Here:
 
@@ -49,9 +57,12 @@ Route::group(['prefix' => '/vendor'], function () {
     Route::get('/logout', [VendorController::class, 'logout']);
     Route::get('/forget', [VendorController::class, 'forget']);
     Route::get('/', [VendorController::class, 'index'])->middleware(VendorMiddleware::class);
-    Route::get('/add-product', [VendorController::class, 'addproduct']);
-    Route::get('/view-product', [VendorController::class, 'viewproduct']);
-    Route::get('/edit-product', [VendorController::class, 'editproduct']);
+    Route::get('/add-product', [ProductController::class, 'addproduct']);
+    Route::post('/add-product', [ProductController::class, 'createproduct']);
+    Route::get('/view-product', [ProductController::class, 'viewproduct']);
+    Route::get('/edit-product/{p_id}', [ProductController::class, 'editproduct']);
+    Route::put('/edit-product/{p_id}', [ProductController::class, 'updateproduct']);
+    Route::delete('/delete-product/{p_id}', [ProductController::class, 'deleteproduct']);
     Route::get('/orders', [VendorController::class, 'orders']);
     Route::get('/order-detail', [VendorController::class, 'orderdetail']);
     Route::get('/users', [VendorController::class, 'users']);
@@ -60,7 +71,7 @@ Route::group(['prefix' => '/vendor'], function () {
 
 // Admin Dashboard Route Starts Here:
 
-Route::get('admin/login',[AdminController::class,'login']);
+Route::get('admin/login', [AdminController::class, 'login']);
 
 Route::get('admin/', [AdminController::class, 'index']);
 
@@ -75,6 +86,8 @@ Route::get('admin/view-category', [AdminCategoryController::class, 'viewcategory
 Route::get('admin/edit-category/{c_id}', [AdminCategoryController::class, 'editcategory']);
 
 Route::put('admin/edit-category/{c_id}', [AdminCategoryController::class, 'updatecategory']);
+
+Route::delete('admin/delete-category/{c_id}', [AdminCategoryController::class, 'deletecategory']);
 
 Route::get('admin/users', [AdminController::class, 'users']);
 

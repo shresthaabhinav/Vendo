@@ -14,7 +14,6 @@
                             <div class="col-xl-8 col-md-8">
                                     <h4>Edit Category</h4>
 
-                                    
                                         <div class="row mt-3">
                                         <form method="POST" action="{{ url('admin/edit-category',$category->c_id) }}">
                                             @csrf
@@ -22,6 +21,10 @@
                                             <div class="col-lg-12 mb-3">
                                             <label class="form-label">Category Name</label>
                                             <input type="text" name="c_name" class="form-control" value="{{ $category->c_name }}">
+
+                                            @error('c_name')
+                                            {{ $message }}
+                                            @enderror
                                             </div>
 
                                             <div class="col-lg-12 mb-3">

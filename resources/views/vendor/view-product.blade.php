@@ -10,6 +10,9 @@
                     <div class="container-fluid px-4">
                         
                     <div class="card p-4 mt-4">
+                        @session('msg')
+                            <div class="alert alert-success">{{ session('msg') }}</div>
+                        @endsession
                             <div class="row">
                                 <div class="col-xl-12 col-md-12">
                                     <div class="d-flex">
@@ -30,65 +33,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                @if($products->count() > 0)
+                                    @foreach($products as $product)
                                     <tr >
                                     <th>
                                         <div class="d-flex">
                                             <div>
-                                                <img src="{{asset('assets/images/products/5.jpg')}}" style="width:70px;" class="rounded-3">
+                                                <img src="{{asset('storage/'.$product->p_image)}}"
+                                                alt="{{ $product->p_name }}"
+                                                style="width:70px;"
+                                                class="rounded-3">
                                             </div>
-                                            <div class="p-3"><h5>Camera</h5></div>
+                                            <div class="p-3"><h5>{{ $product->p_name }}</h5></div>
                                         </div>
                                     </th>
-                                    <td >Rs 599.00</td>
-                                    <td>Electronics</td>
-                                    <td>01</td>
-                                    <td>lorem ipsum</td>
+                                    <td >Rs {{ $product->p_price }}</td>
+                                    <td>{{ $product->category->c_name }}</td>
+                                    <td>{{ $product->p_stock }}</td>
+                                    <td>{{ $product->p_description }}</td>
                                     <td>
-                                        <a href="{{ url('vendor/edit-product') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ url('vendor/edit-product',$product->p_id) }}" 
+                                        class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <form method="POST" action="{{ url('vendor/delete-product/'.$product->p_id) }}" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i></button>
+                                        </form>
                                     </td>
-                                
                                     </tr>
+                                    @endforeach()
 
-                                    <tr>
-                                    <th>
-                                        <div class="d-flex">
-                                            <div>
-                                                <img src="{{asset('assets/images/products/9.jpg')}}" style="width:70px;" class="rounded-3">
-                                            </div>
-                                            <div class="p-3"><h5>Handbag</h5></div>
-                                        </div>
-                                    </th>
-                                    <td >Rs 599.00</td>
-                                    <td>Fashion</td>
-                                    <td>01</td>
-                                    <td>lorem ipsum</td>
-                                    <td>
-                                        <a href="{{ url('vendor/edit-product') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                    
-                                    </tr>
-
-                                    <tr>
-                                    <th>
-                                        <div class="d-flex">
-                                            <div>
-                                                <img src="{{asset('assets/images/products/2.jpg')}}" style="width:70px;" class="rounded-3">
-                                            </div>
-                                            <div class="p-3"><h5>Watch</h5></div>
-                                        </div>
-                                    </th>
-                                    <td >Rs 599.00</td>
-                                    <td>Electronics</td>
-                                    <td>01</td>
-                                    <td>lorem ipsum</td>
-                                    <td>
-                                        <a href="{{ url('vendor/edit-product') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
+                                @endif
                                     
-                                    </tr>
                                     
                                 </tbody>
                                 </table>

@@ -43,16 +43,18 @@ class VendorController extends Controller
         $request->validate([
             "phone" => "required",
             "password" => "required",
-
         ]);
 
         $checkVendor=Vendor::where(['phone'=>$request->phone])->first();
+
+        // dd($checkVendor);
 
         if($checkVendor && Hash::check($request->password,$checkVendor->password)){
 
             if($checkVendor->status=="verified"){
                 session(['vendorLogin'=>true]);
                 session(['vendorName'=>$checkVendor->full_name]);
+                session(['vendorId'=>$checkVendor->v_id]);
                 return redirect('vendor/');
             }else{
                 return redirect('vendor/login')->with('msg','You are not verified');
@@ -79,21 +81,6 @@ class VendorController extends Controller
         return view('vendor.index');
     }
 
-    public function addproduct()
-    {
-        return view('vendor.add-product');
-    }
-
-    public function viewproduct()
-    {
-        return view('vendor.view-product');
-    }
-
-    public function editproduct()
-    {
-        return view('vendor.edit-product');
-    }
-
     public function orders()
     {
         return view('vendor.orders');
@@ -111,6 +98,8 @@ class VendorController extends Controller
 
     public function profile()
     {
-        return view('vendor.profile');
+        $v_id = session('venodroId');
+        $vendor = Vendor::find($v_id);
+        return view('vendor.profile',compact('vendor'));
     }
 }
