@@ -7,9 +7,13 @@
         
             <div id="layoutSidenav_content">
                 <main>
-                    <form method="POST" action="" enctype="multipart/form-data">
-                    
+                    <form method="POST" action="{{ url('vendor/profile') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                    <div class="container p-4">
+                    @session('msg')
+                        <div class="alert alert-success">{{ session('msg') }}</div>
+                    @endsession
                         <div class="card p-4">
                             <div class="row">
                             
@@ -34,19 +38,19 @@
                                             <input type="text" name="full_name" class="form-control" value="{{ $vendor->full_name }}">
                                         </div>
 
-                                        <div class="col-lg-12 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Email</label>
                                             <input type="email" name="email" class="form-control" value="{{ $vendor->email }}">
                                         </div>
 
-                                        <div class="col-lg-12 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label class="form-label">Phone Number</label>
                                             <input type="tel" name="phone" class="form-control" value="{{ $vendor->phone }}">
                                         </div>
 
                                         <div class="col-lg-12 mb-3">
-                                            <label class="form-label">Phone Number</label>
-                                            <textarea></textarea>
+                                            <label class="form-label">Address</label>
+                                            <textarea class="form-control" name="address">{{ $vendor->address }}</textarea>
                                         </div>
                                         
                                         </div>
@@ -100,10 +104,8 @@
                                     
                             </div>
 
-                            
                             </div>
 
-                            
                         </div>
 
                         <div class="card p-4 mt-4">
@@ -111,8 +113,6 @@
                             
                             <div class="col-xl-12 col-md-12">
                                     <h4>Payment Information</h4>
-
-                                    
 
                                         <div class="row mt-3">
 
@@ -139,17 +139,13 @@
                                     
                             </div>
 
-                            
                             </div>
 
-                            
                         </div>
                       
                    </div>
                    </form>
                 </main>
             
-                
-
 @endsection
                 

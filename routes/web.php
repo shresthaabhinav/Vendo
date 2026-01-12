@@ -67,6 +67,8 @@ Route::group(['prefix' => '/vendor'], function () {
     Route::get('/order-detail', [VendorController::class, 'orderdetail']);
     Route::get('/users', [VendorController::class, 'users']);
     Route::get('/profile', [VendorController::class, 'profile']);
+    Route::put('/profile', [VendorController::class, 'updateprofile']);
+
 });
 
 // Admin Dashboard Route Starts Here:
