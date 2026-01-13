@@ -121,10 +121,16 @@ class VendorController extends Controller
         "business_category" => "required",
         "bank_account_no" => "required",
         "payment_method" => "required",
+        // "image" => "required"
         ]);
 
+        $image = $vendor->image;
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('vendors','public');
+        }
+
         $vendor->update([
-        "full_name" => $request->fullname,
+        "full_name" => $request->full_name,
         "phone" => $request->phone,
         "email" => $request->email,
         "address" => $request->address,
@@ -135,6 +141,7 @@ class VendorController extends Controller
         "business_category" => $request->business_category,
         "bank_account_no" => $request->bank_account_no,
         "payment_method" => $request->payment_method,
+        "image" => $image
         ]);
 
         return redirect('vendor/profile')->with('msg', 'Your Profile Updated Successfully');
