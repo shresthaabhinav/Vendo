@@ -5,6 +5,8 @@ use App\Http\Middleware\VendorMiddleware;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\admin\AdminBannerController;
+
 use App\Http\Controllers\{
     HomeController,
     CategoryController,
@@ -96,5 +98,11 @@ Route::get('admin/users', [AdminController::class, 'users']);
 Route::get('admin/vendors', [AdminController::class, 'vendors']);
 
 Route::get('admin/orders', [AdminController::class, 'orders']);
+
+Route::get('admin/add-banner', [AdminBannerController::class, 'addbanner']);
+
+Route::post('admin/add-banner', [AdminBannerController::class, 'createbanner']);
+
+Route::get('admin/view-banner', [AdminBannerController::class, 'viewbanner']);
 
 // Route::get('admin/products', [AdminController::class, 'products']);

@@ -15,7 +15,7 @@
                            <div class="sb-nav-link-icon"><i class="fa-brands fa-shopify"></i></div> Manage Category
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('admin/add-category') }}">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/add-category') }}">Add</a></li>
                             <li><a class="dropdown-item" href="{{ url('admin/view-category') }}">View</a></li>
 
                         </ul>
@@ -35,13 +35,22 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-arrow-down-short-wide"></i></div>
                         Manage Orders
                     </a>
+                    <a class="nav-link" href="{{url('/')}}" target="_blank">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-globe"></i></div>
+                        Website
+                    </a>
 
-                    <!-- <a class="nav-link" href="{{url('admin/products')}}">
-                        <div class="sb-nav-link-icon"><i class="fa-brands fa-shopify"></i></div>
-                        Manage Products
-                    </a> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                           <div class="sb-nav-link-icon"><i class="fa-solid fa-image"></i></div> Website Banner
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('admin/add-banner') }}">Add</a></li>
+                            <li><a class="dropdown-item" href="{{ url('admin/view-banner') }}">View</a></li>
 
-                    
+                        </ul>
+                    </li>
 
                 </div>
             </div>
