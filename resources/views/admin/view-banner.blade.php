@@ -1,6 +1,6 @@
 @extends('admin.includes.main')
 @push('title')
-<title>View Category</title>
+<title>View Banner</title>
 @endpush
 
 @section('content')
@@ -35,13 +35,13 @@
                                 @foreach($banners as $banner)
 
                                     <tr >
-                                    <td>1</td>
+                                    <td>{{ $banner->b_id }}</td>
                                     <td><img src="{{asset('storage/'.$banner->b_image)}}" style="width:200px;" class="rounded-3" alt="{{ $banner->b_alt }}"></td>
                                     <td>{{ $banner->b_alt }}</td>
                                     
                                     <td>
                                  
-                                        <form method="POST" action="{{ url('admin/delete-category',$banner->b_id) }}" class="d-inline">
+                                        <form method="POST" action="{{ url('admin/delete-banner',$banner->b_id) }}" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>

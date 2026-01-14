@@ -105,4 +105,6 @@ Route::post('admin/add-banner', [AdminBannerController::class, 'createbanner']);
 
 Route::get('admin/view-banner', [AdminBannerController::class, 'viewbanner']);
 
+Route::delete('admin/delete-banner/{b_id}', [AdminBannerController::class, 'deletebanner']);
+
 // Route::get('admin/products', [AdminController::class, 'products']);

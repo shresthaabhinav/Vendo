@@ -5,18 +5,14 @@
 @section('content')
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
+
+        @foreach($banners as $banner)
+        
+        @endforeach
             <div class="carousel-item active">
-                <img src="{{ asset('assets/images/slider1.png') }}" class="d-block w-100" alt="Slider 1">
+                <img src="{{ asset('storage/'.$banner->b_image) }}" class="d-block w-100" alt="Slider 1">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/slider2.png') }}" class="d-block w-100" alt="Slider 2">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/slider3.png') }}" class="d-block w-100" alt="Slider 3">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/slider4.png') }}" class="d-block w-100" alt="Slider 4">
-            </div>
+            
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

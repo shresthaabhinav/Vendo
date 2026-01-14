@@ -32,32 +32,12 @@ class AdminBannerController extends Controller
         return view('admin.view-banner',compact('banners'));
     }
 
-    public function editcategory($c_id){
-        $category = Category::find($c_id);
-        return view('admin.edit-category',compact('category'));
-    }
 
-    public function updatecategory(Request $request, $c_id){
-        $category = Category::find($c_id);
+    public function deletebanner($b_id){
+        $banner = Banner::find($b_id);
 
-        $request->validate([
-                "c_name" => "required",
-                "c_commission" => "required",
-        ]);
+        $banner->delete();
 
-        $category->update([
-                "c_name" => $request->c_name,
-                "c_commission" => $request->c_commission,
-        ]);
-
-        return redirect('admin/view-category')->with('msg','Updated Category Successfully');
-    }
-
-    public function deletecategory($c_id){
-        $category = Category::find($c_id);
-
-        $category->delete();
-
-        return redirect('admin/view-category')->with('msg','Deleted Category Successfully');
+        return redirect('admin/view-banner')->with('msg','Banner Deleted Successfully');
     }
 }
