@@ -7,12 +7,11 @@
         <div class="carousel-inner">
 
         @foreach($banners as $banner)
-        
-        @endforeach
             <div class="carousel-item active">
-                <img src="{{ asset('storage/'.$banner->b_image) }}" class="d-block w-100" alt="Slider 1">
+                <img src="{{ asset('storage/'.$banner->b_image) }}" class="d-block w-100" alt="{{ $banner->b_alt }}"> 
             </div>
-            
+        @endforeach
+        
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
